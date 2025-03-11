@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 20px;
+    font-family: "Open Sans", sans-serif;
+}
+
+header{
+    border: solid 2px red;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+header ul{
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+}
+
+
+.container{
+    border: solid 2px black;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    min-height: 400px;
+    margin-top: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    display: flex;
+    border: solid 2px green;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+.card div{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    margin-bottom: 2px;
+}
+
+input{
+    width: 150px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+input:focus{
+    border: 2px solid #ff6600; /* Altera a borda quando o campo está selecionado */
+    outline: none; /* Remove a borda padrão do navegador */
+    box-shadow: 0 0 5px #ff6600; /* Adiciona um brilho ao redor */
+}
+
+.resposta {
+    margin-top: 20px;
+    border: solid 2px orange;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);;
+    grid-template-rows: 1;
+    width: 90%;
+    padding: 30px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.resposta div {
+    background-color: #ff6600;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nova-resposta{
+    margin-top: 20px;
+    border: solid 2px orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 90%;
+    padding: 30px;
+}

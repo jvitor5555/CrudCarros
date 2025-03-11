@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/pesquisar.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Listar Carros</h1>
+        <nav>
+           <ul>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">pppppp</a></li>
+           </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div>
+              <label for="nome">Nome do Carro</label>
+              <input type="text" id="nome" name="nome">
+            </div>
+            <div>
+              <label for="marca">Marca do Carro</label>
+              <input type="text" id="marca" name="marca">
+            </div>
+            <div>
+              <label for="modelo">Modelo do Carro</label>
+              <input type="text" id="modelo" name="modelo">
+            </div>
+            <div>
+              <label for="ano">Ano do Carro</label>
+              <input type="text" id="ano" name="ano">
+            </div>
+            <div>
+              <label for="preco">Preço do Carro</label>
+              <input type="text" id="preco" name="preco">
+            </div>
+            <div>
+              <button type="button" class="botao" onclick="ListarCarros()">Listar</button>
+            </div>
+            <div>
+              <button type="button" class="botao" onclick="">C</button>
+            </div>
+        </div>
+
+        <div class="resultado-pesquisa" id="resultado-pesquisa"></div>
+
+        <div class="resposta" id="resposta">
+       
+        </div>
+
+        <div class="nova-resposta" id="nova-resposta"></div>
+    </div>
+
+    <script src="../static/js/pesquisar.js"></script>
+</body>
+</html>

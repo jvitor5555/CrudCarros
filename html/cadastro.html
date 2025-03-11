@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+    <title>Cadastro de Carros</title>
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Carros</h1>
+        <nav>
+           <ul>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">ppppp</a></li>
+            <li><a href="#">pppppp</a></li>
+           </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div>
+              <label for="nome">Nome do Carro</label>
+              <input type="text" id="nome" name="nome">
+            </div>
+            <div>
+              <label for="marca">Marca do Carro</label>
+              <input type="text" id="marca" name="marca">
+            </div>
+            <div>
+              <label for="modelo">Modelo do Carro</label>
+              <input type="text" id="modelo" name="modelo">
+            </div>
+            <div>
+              <label for="ano">Ano do Carro</label>
+              <input type="text" id="ano" name="ano">
+            </div>
+            <div>
+              <label for="preco">Preço do Carro</label>
+              <input type="text" id="preco" name="preco">
+            </div>
+            <div class="invisivel">
+                <div class="file-upload">
+                    <label for="imagem" class="file-label">Escolher imagem</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
+                    <span class="file-name" id="file-name">Nenhuma imagem selecionada</span>
+                </div>
+            </div>
+
+            <div>
+              <button type="button" class="botao" onclick="CadastrarCarros()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="resposta" id="resposta"></div>
+
+  <script src="../static/js/cadastro.js"></script>
+
+</body>
+</html>
