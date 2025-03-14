@@ -1,4 +1,8 @@
-document.getElementById("imagem").addEventListener("change", NomeArquivo);
+let nome_carro = document.getElementById("nome");
+let marca_carro = document.getElementById("marca");
+let modelo_carro = document.getElementById("modelo");
+let ano_carro = document.getElementById("ano");
+let preco_carro = document.getElementById("preco");
 
 function NomeArquivo() {
     var arquivo = document.getElementById("imagem").files[0];
@@ -10,14 +14,12 @@ function NomeArquivo() {
     }
 }
 
-// Obtendo os elementos do formulário
-let nome_carro = document.getElementById("nome");
-let marca_carro = document.getElementById("marca");
-let modelo_carro = document.getElementById("modelo");
-let ano_carro = document.getElementById("ano");
-let preco_carro = document.getElementById("preco");
+document.getElementById("imagem").addEventListener("change", NomeArquivo);
 
-function CadastrarCarros() {
+document.getElementById("botao-cadastrar").addEventListener("click", function (event) {
+    
+    event.preventDefault();
+
     let imagem_carro = document.getElementById("imagem").files[0];
     let formdata = new FormData();
 
@@ -30,9 +32,9 @@ function CadastrarCarros() {
 
     if (!imagem_carro) {
         console.log("Nenhuma imagem selecionada.");
-    } else {
-        console.log("Imagem selecionada:", imagem_carro);
-    }
+        window.alert("Por favor, selecione uma imagem.");
+        return; 
+    } 
 
     for (let [key, value] of formdata.entries()) {
         console.log(key, value); // Exibe todos os dados anexados ao FormData
@@ -51,26 +53,13 @@ function CadastrarCarros() {
             return response.json(); // Se for bem-sucedido, converte para JSON
         })
         .then(data => {
-            const respostadiv = document.getElementById("resposta");
-            if (respostadiv) {
-                respostadiv.innerHTML = `<div class="sucesso">Resposta do Servidor: ${JSON.stringify(data)}</div>`;
-                setTimeout(() => {
-                    respostadiv.innerHTML = "";
-                }, 10000);
-            } else {
-                console.error("Elemento resposta não encontrado.");
-            }
+            window.alert("Carro cadastrado com sucesso!"); 
+            console.log("Resposta do servidor:", data); 
         })
         .catch(error => {
-            const respostadiv = document.getElementById("resposta");
-            if (respostadiv) {
-                respostadiv.innerHTML = `<div class="erro">ERRO (${error.status || "Desconhecido"}): ${error.message || "Erro ao processar a requisição"}</div>`;
-                setTimeout(() => {
-                    respostadiv.innerHTML = "";
-                }, 10000);
-            } else {
-                console.error("Elemento resposta não encontrado.");
-            }
+            window.alert(`Erro ao cadastrar o carro: ${error.message || "Erro desconhecido"}`); // Mensagem de erro
+            console.error("Erro na requisição:", error); // Exibe o erro no console
         });
-}
+    
+});
 

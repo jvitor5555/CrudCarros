@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/pesquisar.css">
-    <title>Document</title>
+    <title>Listar Carros</title>
 </head>
 <body>
+  <main></main>
     <header>
         <h1>Listar Carros</h1>
         <nav>
@@ -42,18 +43,26 @@
               <input type="text" id="preco" name="preco">
             </div>
             <div>
-              <button type="button" class="botao" onclick="ListarCarros()">Listar</button>
+              <button type="button" class="botao" onclick="ListarCarros()">Filtrar</button>
             </div>
             <div>
-              <button type="button" class="botao" onclick="">C</button>
+              <button type="button" class="botao" onclick="ListarTudo()">Listar</button>
+            </div>
+            <div>
+              <button type="button" class="botao" onclick="Limpar()">Limpar</button>
             </div>
         </div>
 
-        <div class="resultado-pesquisa" id="resultado-pesquisa"></div>
+        
 
-        <div class="resposta" id="resposta">
-       
+        <div class="titulo" id="titulo">
+          <div class="ntitulo"><strong>Nome do carro</strong></div>
+          <div class="ntitulo"><strong>Marca do Carro</strong></div>
+          <div class="ntitulo"><strong>Modelo do Carro</strong></div>
+          <div class="ntitulo"><strong>Ano do Carro</strong></div>
+          <div class="ntitulo"><strong>Preço do Carro</strong></div>
         </div>
+        <div class="resposta" id="resposta"></div>
 
         <div class="nova-resposta" id="nova-resposta"></div>
     </div>
