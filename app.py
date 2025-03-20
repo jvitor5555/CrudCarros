@@ -15,10 +15,10 @@ CORS(app)
 
 def ConectarBancoDados():
     conn = sql.connect(
-        host="localhost",
-        user="usuarioPY",
-        password="123456789",
-        database="Carros"
+        host="mysql.railway.internal",
+        user="root",
+        password="PUGUMHVXnfJdTJCEuUPpOuzTuyrrOROi",
+        database="railway"
     )
     return conn
     
