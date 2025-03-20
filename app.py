@@ -1,11 +1,9 @@
-import sqlite3  # Ajuste conforme o banco que estiver usando
 from flask import Flask, request, jsonify
-from flask import Flask, render_template, request, jsonify
 import mysql.connector as sql
 import os
 import logging
 from flask_cors import CORS
-from flask_cors import cross_origin
+
 
 logging.basicConfig(level=logging.DEBUG)
 
