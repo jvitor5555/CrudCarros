@@ -5,6 +5,11 @@ import mysql.connector as sql
 import os
 import logging
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 def create_virtualenv():
     # Cria o ambiente virtual se não existir
@@ -20,12 +25,7 @@ app = Flask(__name__)
 CORS(app)
 
 def ConectarBancoDados():
-    conn = sql.connect(
-        host="mysql.railway.internal",
-        user="root",
-        password="PUGUMHVXnfJdTJCEuUPpOuzTuyrrOROi",
-        database="railway"
-    )
+    conn = sql.connect(DATABASE_URL)
     return conn
     
 def CriarTabela():
