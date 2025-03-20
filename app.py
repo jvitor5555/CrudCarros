@@ -1,9 +1,18 @@
+import subprocess
+import sys
 from flask import Flask, request, jsonify
 import mysql.connector as sql
 import os
 import logging
 from flask_cors import CORS
 
+
+def create_virtualenv():
+    # Cria o ambiente virtual se não existir
+    if not os.path.exists("venv"):
+        subprocess.check_call([sys.executable, "-m", "venv", "venv"])
+
+create_virtualenv()
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -121,12 +130,9 @@ def ListarCarrosParametros():
 
     return jsonify(resultado_formatado), 200
 
-
 def main ():
     if __name__ == "__main__":
         app.run(debug=True)
-        
-
 
 def InserirCarrosNoBanco(nome, marca, modelo, ano, preco, imagem):
     
