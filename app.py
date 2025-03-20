@@ -6,7 +6,6 @@ import os
 import logging
 from flask_cors import CORS
 
-
 def create_virtualenv():
     # Cria o ambiente virtual se não existir
     if not os.path.exists("venv"):
