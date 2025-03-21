@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 # Atualize o pip
 RUN pip install --upgrade pip
 
+RUN mkdir -p /app/imgs
+
 # Copie o arquivo requirements.txt para o contêiner
 COPY requirements.txt /app/requirements.txt
 
