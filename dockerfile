@@ -15,6 +15,8 @@ RUN pip install --upgrade pip
 # Copie o arquivo requirements.txt para o contêiner
 COPY requirements.txt /app/requirements.txt
 
+COPY imgs /app/imgs
+
 # Defina o diretório de trabalho
 WORKDIR /app
 
