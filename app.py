@@ -10,8 +10,6 @@ from urllib.parse import urlparse
 
 load_dotenv()
 
-DATABASE_URL = os.getenv('DATABASE_URL')
-
 def create_virtualenv():
     # Cria o ambiente virtual se não existir
     if not os.path.exists("venv"):
@@ -27,8 +25,6 @@ CORS(app)
 
 def ConectarBancoDados():
     try:
-        # Parse da URL do banco de dados
-        db_url = urlparse(DATABASE_URL)
         
         user = os.getenv("DB_USER")
         password = os.getenv("DB_PASSWORD")
@@ -46,13 +42,21 @@ def ConectarBancoDados():
             database=db_name,
             port=port
         )
+        
+        if conn is None:
+            print("Erro: conexão com o banco de dados não foi estabelecida.")
+            return  # Evita continuar se a conexão falhar
 
         print("Conexão bem-sucedida!")
         return conn  # Retorna a conexão para ser usada depois
 
     except Exception as e:
         print("Erro ao conectar:", e)
-        return None  # Retorna None em caso de erro
+        conn = None
+        
+        if conn is None:
+            print("Erro: conexão com o banco de dados não foi estabelecida.")
+            return  # Evita continuar se a conexão falhar
 
 # Teste a conexão
 if __name__ == "__main__":
