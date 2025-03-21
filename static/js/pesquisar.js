@@ -115,7 +115,7 @@ function ListarCarros() {
 
 function ListarTudo() {
     
-    fetch('http://localhost:5000/carros')
+    fetch('https://crudcarros-production.up.railway.app/carros')
         .then(response => {
 
             if (!response.ok) {
