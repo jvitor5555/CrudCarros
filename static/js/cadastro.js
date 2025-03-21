@@ -40,7 +40,7 @@ document.getElementById("botao-cadastrar").addEventListener("click", function (e
         console.log(key, value); // Exibe todos os dados anexados ao FormData
     }
 
-    fetch("http://localhost:5000/carros/adicionar-carros", {
+    fetch("crudcarros-production.up.railway.app/carros/adicionar-carros", {
         method: "POST",
         body: formdata
     })
