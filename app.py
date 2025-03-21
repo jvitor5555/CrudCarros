@@ -25,16 +25,15 @@ CORS(app)
 
 def ConectarBancoDados():
     try:
-        
+        # Carregar variáveis de ambiente
         user = os.getenv("DB_USER")
         password = os.getenv("DB_PASSWORD")
         host = os.getenv("DB_HOST")
-        # Define a porta padrão como 3306, caso não seja fornecida
+        # Usar 3306 como padrão se não houver DB_PORT
         port = os.getenv("DB_PORT", 3306)
         db_name = os.getenv("DB_NAME")
 
-
-        # Criar conexão com MySQL
+        # Criar a conexão com MySQL
         conn = sql.connect(
             host=host,
             user=user,
@@ -42,21 +41,17 @@ def ConectarBancoDados():
             database=db_name,
             port=port
         )
-        
-        if conn is None:
-            print("Erro: conexão com o banco de dados não foi estabelecida.")
-            return  # Evita continuar se a conexão falhar
 
-        print("Conexão bem-sucedida!")
-        return conn  # Retorna a conexão para ser usada depois
+        if conn.is_connected():  # Verifica se a conexão foi bem-sucedida
+            print("Conexão bem-sucedida!")
+            return conn  # Retorna a conexão para ser usada depois
+        else:
+            print("Erro: não foi possível estabelecer uma conexão com o banco de dados.")
+            return None  # Retorna None se não conseguiu conectar
 
-    except Exception as e:
-        print("Erro ao conectar:", e)
-        conn = None
-        
-        if conn is None:
-            print("Erro: conexão com o banco de dados não foi estabelecida.")
-            return  # Evita continuar se a conexão falhar
+    except sql.Error as err:  # Captura erros de conexão
+        print(f"Erro ao conectar ao MySQL: {err}")
+        return None  # Retorna None caso haja erro
 
 # Teste a conexão
 if __name__ == "__main__":
