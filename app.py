@@ -190,40 +190,39 @@ app.config["PASTA_IMGS"] = PASTA_IMGS
 
 @app.route("/carros/adicionar-carros", methods=["POST"])
 def AdicionarCarros():
-    
     logging.debug(f"Form Data: {request.form}")
     logging.debug(f"Arquivos recebidos: {request.files}")
-    
+
     nome_carro = request.form.get("nome")
     marca_carro = request.form.get("marca")
     modelo_carro = request.form.get("modelo")
     ano = request.form.get("ano", 0)
     preco = request.form.get("preco", 0.0)
     imagem = request.files.get("imagem")
-    
-    if imagem:
-        imagem_path = os.path.join(app.config["PASTA_IMGS"], imagem.filename)
-        imagem.save(imagem_path)
-        logging.debug(f"Imagem salva em: {imagem_path}")
-    
+
+    if not imagem:
+        return jsonify({"Erro": "A imagem é obrigatória"}), 400
+
     if not os.path.exists(app.config["PASTA_IMGS"]):
         os.makedirs(app.config["PASTA_IMGS"])
+
+    imagem_path = os.path.join(app.config["PASTA_IMGS"], imagem.filename)
+
+    imagem.save(imagem_path)
+    logging.debug(f"Imagem salva em: {imagem_path}")
 
     try:
         
         if not all([nome_carro, marca_carro, modelo_carro, ano, preco]):
-            
-            return jsonify({"Erro": "Campos obrigatórios ausentes"}), 400
-        
-        InserirCarrosNoBanco(nome_carro, marca_carro, modelo_carro, ano, preco, imagem_path)
-        
-        return jsonify({"Mensagem": "Carro adicionado com Sucesso"}), 201
-    
-    except Exception as e:
-    
-        return jsonify({"Erro": str(e)}), 500
-    
+            return jsonify({"Erro": "Todos os campos são obrigatórios"}), 400
 
+        InserirCarrosNoBanco(nome_carro, marca_carro,modelo_carro, ano, preco, imagem_path)
+        return jsonify({"Mensagem": "Carro adicionado com Sucesso"}), 201
+
+    except Exception as e:
+        return jsonify({"Erro": str(e)}), 500
+
+    
 def PesquisarNoBanco(querry, dado):
     
     conn = ConectarBancoDados()

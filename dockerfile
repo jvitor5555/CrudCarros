@@ -12,21 +12,23 @@ RUN apt-get update && apt-get install -y \
 # Atualize o pip
 RUN pip install --upgrade pip
 
-RUN mkdir -p /app/imgs
-
-# Copie o arquivo requirements.txt para o contêiner
-COPY requirements.txt /app/requirements.txt
-
-COPY imgs /app/imgs
-
 # Defina o diretório de trabalho
 WORKDIR /app
+
+# Copie os arquivos antes de instalar as dependências (melhora cache)
+COPY requirements.txt .
 
 # Instale as dependências do Python
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copie o restante do código
-COPY . /app
+COPY . .
+
+# 🔹 Criar a pasta "imgs" dentro do contêiner
+RUN mkdir -p /app/imgs
+
+# 🔹 Garantir permissões para escrita na pasta "imgs"
+RUN chmod -R 777 /app/imgs
 
 # Exponha a porta do Flask
 EXPOSE 5000
