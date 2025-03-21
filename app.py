@@ -6,6 +6,7 @@ import os
 import logging
 from flask_cors import CORS
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 
 load_dotenv()
 
@@ -25,8 +26,40 @@ app = Flask(__name__)
 CORS(app)
 
 def ConectarBancoDados():
-    conn = sql.connect(DATABASE_URL)
-    return conn
+    try:
+        # Parse da URL do banco de dados
+        db_url = urlparse(DATABASE_URL)
+        
+        user = os.getenv("DB_USER")
+        password = os.getenv("DB_PASSWORD")
+        host = os.getenv("DB_HOST")
+        # Define a porta padrão como 3306, caso não seja fornecida
+        port = os.getenv("DB_PORT", 3306)
+        db_name = os.getenv("DB_NAME")
+
+
+        # Criar conexão com MySQL
+        conn = sql.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=db_name,
+            port=port
+        )
+
+        print("Conexão bem-sucedida!")
+        return conn  # Retorna a conexão para ser usada depois
+
+    except Exception as e:
+        print("Erro ao conectar:", e)
+        return None  # Retorna None em caso de erro
+
+# Teste a conexão
+if __name__ == "__main__":
+    conn = ConectarBancoDados()
+    if conn:
+        conn.close()
+
     
 def CriarTabela():
     conn = ConectarBancoDados()

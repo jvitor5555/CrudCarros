@@ -1,23 +1,31 @@
 # Use uma imagem base do Python
 FROM python:3.12.9-slim
 
-# Instale o git e outras dependências necessárias
-RUN apt-get update && apt-get install -y git build-essential python3-dev
+# Instale dependências do sistema necessárias
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-libmysqlclient-dev \
+    libssl-dev \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Atualize o pip
+RUN pip install --upgrade pip
 
 # Copie o arquivo requirements.txt para o contêiner
 COPY requirements.txt /app/requirements.txt
 
-# Instale as dependências do Python
-RUN pip install --no-cache-dir -r /app/requirements.txt
+# Defina o diretório de trabalho
+WORKDIR /app
 
-# Defina variáveis de ambiente (usando o formato correto)
-ENV PYTHONUNBUFFERED=1
+# Instale as dependências do Python
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copie o restante do código
 COPY . /app
 
-# Defina o diretório de trabalho
-WORKDIR /app
+# Exponha a porta do Flask
+EXPOSE 5000
 
-# Comando padrão para executar o aplicativo
-CMD ["python", "seu_script.py"]
+# Comando para rodar o aplicativo
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
