@@ -16,7 +16,7 @@ function ListarCarros() {
     };
 
     // Faz a requisição POST para a API
-    fetch("crudcarros-production.up.railway.app/carros/pesquisa", {
+    fetch("https://crudcarros-production.up.railway.app/carros/pesquisa", {
         method: "POST",
         headers: {
             "Content-type": "application/json"
